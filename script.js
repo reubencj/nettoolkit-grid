@@ -16,26 +16,31 @@ function random_color() {
 const grid_boxes = document.querySelectorAll(".box");
 
 let box_time = [];
-console.log(grid_boxes);
 
 for (let i = 0; i < grid_boxes.length; i++) {
-  box_time.push({ number: i + 1, box: grid_boxes[i], time: null });
+  box_time.push({
+    number: i + 1,
+    box: grid_boxes[i],
+    last_modified_time: null,
+  });
 }
-
-console.log(box_time);
 
 function change_random_box_color() {
   let exit_function = false;
+
+  //loop till a random box is selected with last color change is 2 or more seconds ago
   while (exit_function === false) {
     let random_box = Math.floor(Math.random() * 8);
 
     const selected_box = box_time[random_box];
 
-    if (selected_box.time === null || selected_box.time <= Date.now() - 2000) {
+    if (
+      selected_box.last_modified_time === null ||
+      selected_box.last_modified_time <= Date.now() - 2000
+    ) {
       selected_box.box.style.backgroundColor = random_color();
-      selected_box.time = Date.now();
+      selected_box.last_modified_time = Date.now();
       exit_function = true;
-      console.log(selected_box);
     }
   }
 }
