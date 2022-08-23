@@ -30,7 +30,7 @@ function change_random_box_color() {
 
   //loop till a random box is selected with last color change is 2 or more seconds ago
   while (exit_function === false) {
-    let random_box = Math.floor(Math.random() * 8);
+    let random_box = Math.floor(Math.random() * 16);
 
     const selected_box = box_time[random_box];
 
